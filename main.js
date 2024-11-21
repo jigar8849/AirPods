@@ -30,38 +30,42 @@ window.addEventListener("scroll", scrollHeader);
 
 // change background header end
 
-// scroling Section start
-
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      console.log(`Scrolling to section: ${sectionId}`);
-      section.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.log(`Section not found: ${sectionId}`);
-    }
-  }
 
 
-  document.addEventListener('DOMContentLoaded', () => {
+// nav scroll S
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the navigation links and sections
+    const navTechSpecs = document.getElementById('nav-1');  // Tech Specs link
+    const navOverview = document.getElementById('nav-2');   // Overview link
+    const navCompare = document.getElementById('nav-3');    // Compare link
+    
+    const techSpecsSection = document.getElementById('ts');  // Tech Specs section
+    const overviewSection = document.getElementById('ov');   // Overview section
+    const compareSection = document.getElementById('cp');    // Compare section
 
-    const navLinks=document.querySelectorAll('.li');
-    navLinks.forEach(link => {
-        link.addEventListener("click",()=>{
-            toggleNav();
+    // Function to smooth scroll to a section
+    function smoothScrollToSection(section) {
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
+    }
+
+    // Add click event listeners for smooth scrolling
+    navTechSpecs.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default anchor behavior
+        smoothScrollToSection(techSpecsSection); // Scroll to Tech Specs
     });
 
+    navOverview.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default anchor behavior
+        smoothScrollToSection(overviewSection); // Scroll to Overview
+    });
 
-    document.getElementById('nav-1').addEventListener('click', () => scrollToSection('ts'));
-    document.getElementById('nav-2').addEventListener('click', () => scrollToSection('ov'));
-    document.getElementById('nav-3').addEventListener('click', () => scrollToSection('cp'));
+    navCompare.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default anchor behavior
+        smoothScrollToSection(compareSection); // Scroll to Compare
+    });
 });
 
-    // document.getElementById('nav-1').addEventListener('click',()=> scrollToSection('ts'));
-    // document.getElementById('nav-2').addEventListener('click',()=> scrollToSection('ov'));
-    // document.getElementById('nav-3').addEventListener('click',()=> scrollToSection('cp'));
-
-
-
-// scroling Section end
+// nav scroll E
